@@ -1,4 +1,6 @@
-Configurations for your issuer(s) are placed within this folder. Each issuer should correspond to a single config file. The name of the config file will be used as the issuers name in the test output. An example configuration is supplied below.
+Configurations for your issuer(s) are placed within this folder. **Each issuer should correspond to a single config file with a .cjs file extension.**
+
+The name of the config file will be used as the issuers name in the test output. An example configuration is supplied below.
 
 ```js
 /**
