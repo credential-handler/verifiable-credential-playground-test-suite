@@ -1,0 +1,47 @@
+{
+  "name": "chapi-issuer-test-suite",
+  "version": "0.1.0",
+  "description": "Test Suite for checking issuer compatibility with the CHAPI Playground.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "mocha tests/ --timeout 15000 --preserve-symlinks",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/credential-handler/chapi-issuer-test-suite.git"
+  },
+  "keywords": [
+    "test",
+    "vc",
+    "api",
+    "chapi"
+  ],
+  "author": {
+    "name": "Digital Bazaar, Inc",
+    "email": "support@digitalbazaar.com",
+    "url": "https://digitalbazaar.com/"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/credential-handler/chapi-issuer-test-suite/issues"
+  },
+  "homepage": "https://github.com/credential-handler/chapi-issuer-test-suite#readme",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "klona": "^2.0.5",
+    "mocha": "^10.0.0",
+    "nanoid": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-digitalbazaar": "^4.0.1",
+    "eslint-plugin-jsdoc": "^39.3.3"
+  }
+}
