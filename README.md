@@ -20,6 +20,8 @@ This is a stripped down and simplified version of the W3C [VC API Issuer Test Su
 
 ## Usage
 ### Install
+This project requires Node.js v16.
+
 The required dependencies to run the test suite locally can be installed as follows
 
 ```js
