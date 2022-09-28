@@ -13,6 +13,11 @@ This is a stripped down and simplified version of the W3C [VC API Issuer Test Su
  
  This allows you to run the same set of tests with a locally defined configuration(s), allowing you to test your issuer independently.
 
+ For more information about Verifiable Credentials and the VC API, please see the following specifications:
+ - [VC API](https://w3c-ccg.github.io/vc-api/)
+ - [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
+ - [Verifiable Presentation Request](https://w3c-ccg.github.io/vp-request-spec/)
+
 ## Usage
 ### Install
 The required dependencies to run the test suite locally can be installed as follows
@@ -31,3 +36,7 @@ Once your configs files are written, the test suite can be started with
 npm test
 ```
 
+## Community Participation
+You're encouraged to participate in the W3C's VC API Issuer Test Matrix!  The W3C Credentials Community Group maintains an [Interoperability Report](https://w3c-ccg.github.io/vc-api-issuer-test-suite/) listing issuers that meet the VC API spec.  
+
+Once you've confirmed your issuer is working, you can add your configuration files to the [vc-api-test-suite-implementations repo](https://github.com/w3c-ccg/vc-api-test-suite-implementations).  Just post a Pull Request to be added to the test matrix and shown on the Interoperability Report.
