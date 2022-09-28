@@ -19,6 +19,7 @@ This is a stripped down and simplified version of the W3C [VC API Issuer Test Su
  - [Verifiable Presentation Request](https://w3c-ccg.github.io/vp-request-spec/)
 
 ## Usage
+
 ### Install
 This project requires Node.js v16.
 
@@ -26,8 +27,6 @@ The required dependencies to run the test suite locally can be installed as foll
 
 ```js
 npm i
-```
-### Configuration
 The tests are run off one or more configuration files located in the `/configs` directory. Each configuration file added to this folder should correspond to an issuer being tested. If many configurations are found in this folder, they will all be included as part of the testing run.
 
 See the [readme](/configs/README.md) included in `/configs` for more information on how to write config files for your issuers.
