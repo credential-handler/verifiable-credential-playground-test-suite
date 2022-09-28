@@ -1,4 +1,4 @@
-# vc-api-issuer-test-suite
+# chapi-issuer-test-suite
 Test Suite for Issuers that implement the VC HTTP API and are looking to integrate into the CHAPI Playground.
 
 ## Table of Contents
