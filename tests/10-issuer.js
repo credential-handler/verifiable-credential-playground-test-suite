@@ -14,7 +14,7 @@ const should = chai.should();
 
 describe('Issue Credential - Data Integrity', function() {
   for(const [name, config] of Object.entries(configs)) {
-    const issuer = new Issuer({config});
+    const issuer = new Issuer({config: config.issuer});
     describe(`Issuer: ${name}`, function() {
       it('MUST successfully issue a credential.', async function() {
         const body = createRequestBody({issuer});
