@@ -10,7 +10,9 @@ const VPs = [
   require('../fixtures/vp-1.json'),
   require('../fixtures/vp-2.json'),
   require('../fixtures/vp-3.json'),
-  require('../fixtures/vp-4.json')
+  require('../fixtures/vp-4.json'),
+  require('../fixtures/vp-ecdsa.json'),
+  require('../fixtures/vp-eddsa.json'),
 ];
 
 // copies a validVc and adds an id.
@@ -36,7 +38,7 @@ export function createISOTimeStamp(timeMs = Date.now()) {
 }
 
 export const createPresentationRequestBody = num => {
-  if(VPs.length < num) {
+  if(!num || VPs.length < num) {
     throw new Error(`VP number must be between 1 and ${VPs.length}`);
   }
   const vp = klona(VPs[num - 1]);

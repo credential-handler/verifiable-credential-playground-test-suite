@@ -29,7 +29,7 @@ describe('Verify Presentation - Data Integrity', function() {
         result.status.should.equal(200, 'Expected statusCode 200.');
         shouldBeVerifiedVP({verification});
       });
-      it.skip(`2. MUST verify a Verifiable Presentation where the credential's issuer
+      it(`2. MUST verify a Verifiable Presentation where the credential's issuer
           and presentation's holder are the same while the credential's subject
           is different.`, async function() {
         const body = createPresentationRequestBody(2);
@@ -40,7 +40,7 @@ describe('Verify Presentation - Data Integrity', function() {
         result.status.should.equal(200, 'Expected statusCode 200.');
         shouldBeVerifiedVP({verification});
       });
-      it.skip(`3. MUST verify a Verifiable Presentation where the presentation's
+      it(`3. MUST verify a Verifiable Presentation where the presentation's
           holder, and credential's subject are the same while the issuer is
           different.`,
       async function() {
@@ -52,7 +52,7 @@ describe('Verify Presentation - Data Integrity', function() {
         result.status.should.equal(200, 'Expected statusCode 200.');
         shouldBeVerifiedVP({verification});
       });
-      it.only(`4. MUST verify a Verifiable Presentation where the presentation's
+      it(`4. MUST verify a Verifiable Presentation where the presentation's
           holder, credential's subject and issuer are all the same.`,
       async function() {
         const body = createPresentationRequestBody(4);
@@ -93,7 +93,7 @@ describe('Verify Presentation - Data Integrity', function() {
       });
       it(`MUST support the verification of a Data Integrity proof of type
           "Ed25519Signature2020".`, async function() {
-        const body = createPresentationRequestBody();
+        const body = createPresentationRequestBody(1);
         const {result, data: verification, error} = await verifier.post({
           json: body
         });
@@ -103,11 +103,23 @@ describe('Verify Presentation - Data Integrity', function() {
       });
       it(`MUST support the verification of a Data Integrity proof of type
           "eddsa-2022".`, async function() {
-        should.equal(true, false);
+        const body = createPresentationRequestBody(5);
+        const {result, data: verification, error} = await verifier.post({
+          json: body
+        });
+        shouldReturnResult({result, error});
+        result.status.should.equal(200, 'Expected statusCode 200.');
+        shouldBeVerifiedVP({verification});
       });
-      it(`MUST support the verification of a Data Integrity proof of type
+      it.only(`MUST support the verification of a Data Integrity proof of type
           "ecdsa-2019".`, async function() {
-        should.equal(true, false);
+        const body = createPresentationRequestBody(4);
+        const {result, data: verification, error} = await verifier.post({
+          json: body
+        });
+        shouldReturnResult({result, error});
+        result.status.should.equal(200, 'Expected statusCode 200.');
+        shouldBeVerifiedVP({verification});
       });
     });
   }

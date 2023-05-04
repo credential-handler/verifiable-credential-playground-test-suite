@@ -18,8 +18,8 @@ export function shouldThrowInvalidInput({result, error}) {
 export function shouldReturnResult({result, error}) {
   if(error) {
     console.error(JSON.stringify(error.data));
+    should.not.exist(error, `Expected no error, got ${error.message}}`);
   }
-  should.not.exist(error, `Expected no error, got ${error.message}}`);
   should.exist(result, 'Expected a result');
 }
 
