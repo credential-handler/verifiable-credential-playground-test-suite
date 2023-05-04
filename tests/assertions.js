@@ -6,8 +6,8 @@ import chai from 'chai';
 const should = chai.should();
 
 export function shouldThrowInvalidInput({result, error}) {
-  should.not.exist(result, 'Expected no result from issuer.');
-  should.exist(error, 'Expected issuer to Error.');
+  should.not.exist(result, 'Expected no result from issuer/verifier.');
+  should.exist(error, 'Expected issuer/verifier to Error.');
   should.exist(error.status, 'Expected an HTTP error response code.');
   error.status.should.not.equal(401,
     'Should not get an Authorization Error.');
@@ -16,7 +16,10 @@ export function shouldThrowInvalidInput({result, error}) {
 }
 
 export function shouldReturnResult({result, error}) {
-  should.not.exist(error, `Expected no error, got ${error?.message}`);
+  if(error) {
+    console.error(JSON.stringify(error.data));
+  }
+  should.not.exist(error, `Expected no error, got ${error.message}}`);
   should.exist(result, 'Expected a result');
 }
 
@@ -82,4 +85,49 @@ function _shouldHaveClaims({subject}) {
     0,
     'Expected credentialSubject to have at least one claim.'
   );
+}
+
+export function shouldBeValidVerification({verification}) {
+  verification.should.be.an(
+    'object',
+    'Expected the verification result to be an object.'
+  );
+  verification.should.have.property('presentationResult');
+  verification.presentationResult.should.have.property('verified');
+  verification.should.have.property('checks');
+  verification.should.have.property('credentialResults');
+  verification.credentialResults.should.be.a(
+    'array',
+    'Expected `credentialResults` to be an array.'
+  );
+  verification.credentialResults.forEach(c => {
+    c.should.be.a(
+      'object',
+      'Expected `credentialResults` items to be objects.'
+    );
+    c.should.have.property('verified');
+  });
+}
+
+export function shouldBeVerifiedVP({verification}) {
+  shouldBeValidVerification({verification});
+  verification.should.have.property('verified');
+  verification.verified.should.equal(
+    true,
+    'Expected `verified` to be true.'
+  );
+  verification.presentationResult.verified.should.equal(
+    true,
+    'Expected `presentationResult.verified` to be true.'
+  );
+  verification.checks.should.contain(
+    'proof',
+    'Expected `checks` to contain "proof".'
+  );
+  verification.credentialResults.forEach(c => {
+    c.verified.should.equal(
+      true,
+      'Expected credentialResults `verified` to be true'
+    );
+  });
 }
