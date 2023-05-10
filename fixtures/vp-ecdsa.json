@@ -2,7 +2,7 @@
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://purl.imsglobal.org/spec/ob/v3p0/context.json",
-    "https://w3id.org/security/data-integrity/v1"
+    "https://w3id.org/security/suites/ed25519-2020/v1"
   ],
   "type": [
     "VerifiablePresentation"
@@ -68,8 +68,8 @@
     "type": "Ed25519Signature2020",
     "proofPurpose": "authentication",
     "verificationMethod": "did:key:z6MktTmBQWV6FmHZyfvSV7ubQ1UCPgLF6VQkRgeGBx7NRzCP#z6MktTmBQWV6FmHZyfvSV7ubQ1UCPgLF6VQkRgeGBx7NRzCP",
-    "created": "2023-05-10T07:54:29Z",
-    "proofValue": "z5dPhqYSHNXLmqoBevmqc8WfosaebufMTUSbRkNVKYYTNqiyc6unbvVXHo17zmWzt7iwo9C3ugc8qst1fduKdG6Vj",
+    "created": "2023-05-10T16:14:05Z",
+    "proofValue": "z5X4WXcPM3bAMxr1pWwwaX31M7aQmmude7VBsR7tXR7rNVa4PJZHD2wLwfJ4gPtz6x7si2wi9W127StqbmLjUxp5u",
     "challenge": "3779e883a51a8086039db1d4e773aec26faeb3ee99643706345c572cddded857",
     "domain": "https://playground.chapi.io"
   }

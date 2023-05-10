@@ -7,11 +7,9 @@ import {
   shouldReturnResult,
   shouldThrowInvalidInput
 } from './assertions.js';
-import chai from 'chai';
 import configs from '../configs/index.cjs';
 import {createPresentationRequestBody} from './mock.data.js';
 import {Verifier} from '../lib/verifier.js';
-const should = chai.should();
 
 describe('Verify Presentation - Data Integrity', function() {
   for(const [name, config] of Object.entries(configs)) {
