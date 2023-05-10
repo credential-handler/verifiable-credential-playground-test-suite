@@ -17,11 +17,10 @@ describe('Verify Presentation - Data Integrity', function() {
   for(const [name, config] of Object.entries(configs)) {
     const verifier = new Verifier({config: config.verifier});
     describe(`Verifier: ${name}`, function() {
-      it(`1. MUST verify a Verifiable Presentation where the credential's
-          issuer, presentation's holder and credential's subject are all
-          different.`,
+      it(`MUST verify a Verifiable Presentation where the presentation's holder
+          and the credential's subject are different (unbound).`,
       async function() {
-        const body = createPresentationRequestBody(1);
+        const body = createPresentationRequestBody('vp-unbound');
         const {result, data: verification, error} = await verifier.post({
           json: body
         });
@@ -29,33 +28,10 @@ describe('Verify Presentation - Data Integrity', function() {
         result.status.should.equal(200, 'Expected statusCode 200.');
         shouldBeVerifiedVP({verification});
       });
-      it(`2. MUST verify a Verifiable Presentation where the credential's issuer
-          and presentation's holder are the same while the credential's subject
-          is different.`, async function() {
-        const body = createPresentationRequestBody(2);
-        const {result, data: verification, error} = await verifier.post({
-          json: body
-        });
-        shouldReturnResult({result, error});
-        result.status.should.equal(200, 'Expected statusCode 200.');
-        shouldBeVerifiedVP({verification});
-      });
-      it(`3. MUST verify a Verifiable Presentation where the presentation's
-          holder, and credential's subject are the same while the issuer is
-          different.`,
+      it(`MUST verify a Verifiable Presentation where the presentation's holder
+          and the credential's subject are the same (bound).`,
       async function() {
-        const body = createPresentationRequestBody(3);
-        const {result, data: verification, error} = await verifier.post({
-          json: body
-        });
-        shouldReturnResult({result, error});
-        result.status.should.equal(200, 'Expected statusCode 200.');
-        shouldBeVerifiedVP({verification});
-      });
-      it(`4. MUST verify a Verifiable Presentation where the presentation's
-          holder, credential's subject and issuer are all the same.`,
-      async function() {
-        const body = createPresentationRequestBody(4);
+        const body = createPresentationRequestBody('vp-bound');
         const {result, data: verification, error} = await verifier.post({
           json: body
         });
@@ -64,7 +40,7 @@ describe('Verify Presentation - Data Integrity', function() {
         shouldBeVerifiedVP({verification});
       });
       it(`MUST adhere to the proof verification format.`, async function() {
-        const body = createPresentationRequestBody(1);
+        const body = createPresentationRequestBody('vp-bound');
         const {result, data: verification, error} = await verifier.post({
           json: body
         });
@@ -75,7 +51,7 @@ describe('Verify Presentation - Data Integrity', function() {
       it(`MUST return a 400 response status code when the request is rejected
           with bad input.`,
       async function() {
-        const body = createPresentationRequestBody();
+        const body = createPresentationRequestBody('vp-bound');
         delete body.verifiablePresentation;
         const {result, error} = await verifier.post({
           json: body
@@ -84,8 +60,8 @@ describe('Verify Presentation - Data Integrity', function() {
       });
       it(`MUST return a 400 response status code when the request fails
           verification.`, async function() {
-        const body = createPresentationRequestBody();
-        body.verifiablePresentation.proof.jws = 'badSignatureValue';
+        const body = createPresentationRequestBody('vp-bound');
+        body.verifiablePresentation.proof.proofValue = 'badSignatureValue';
         const {result, error} = await verifier.post({
           json: body
         });
@@ -93,7 +69,7 @@ describe('Verify Presentation - Data Integrity', function() {
       });
       it(`MUST support the verification of a Data Integrity proof of type
           "Ed25519Signature2020".`, async function() {
-        const body = createPresentationRequestBody(1);
+        const body = createPresentationRequestBody('vp-bound');
         const {result, data: verification, error} = await verifier.post({
           json: body
         });
@@ -103,7 +79,7 @@ describe('Verify Presentation - Data Integrity', function() {
       });
       it(`MUST support the verification of a Data Integrity proof of type
           "eddsa-2022".`, async function() {
-        const body = createPresentationRequestBody(5);
+        const body = createPresentationRequestBody('vp-eddsa');
         const {result, data: verification, error} = await verifier.post({
           json: body
         });
@@ -111,9 +87,9 @@ describe('Verify Presentation - Data Integrity', function() {
         result.status.should.equal(200, 'Expected statusCode 200.');
         shouldBeVerifiedVP({verification});
       });
-      it.only(`MUST support the verification of a Data Integrity proof of type
+      it(`MUST support the verification of a Data Integrity proof of type
           "ecdsa-2019".`, async function() {
-        const body = createPresentationRequestBody(4);
+        const body = createPresentationRequestBody('vp-ecdsa');
         const {result, data: verification, error} = await verifier.post({
           json: body
         });

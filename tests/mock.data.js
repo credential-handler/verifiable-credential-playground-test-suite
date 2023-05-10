@@ -6,14 +6,12 @@ import {klona} from 'klona';
 import {nanoid} from 'nanoid';
 const require = createRequire(import.meta.url);
 const validVc = require('./credential.json');
-const VPs = [
-  require('../fixtures/vp-1.json'),
-  require('../fixtures/vp-2.json'),
-  require('../fixtures/vp-3.json'),
-  require('../fixtures/vp-4.json'),
-  require('../fixtures/vp-ecdsa.json'),
-  require('../fixtures/vp-eddsa.json'),
-];
+const VPs = {
+  'vp-bound': require('../fixtures/vp-bound.json'),
+  'vp-unbound': require('../fixtures/vp-unbound.json'),
+  'vp-ecdsa': require('../fixtures/vp-ecdsa.json'),
+  'vp-eddsa': require('../fixtures/vp-eddsa.json'),
+};
 
 // copies a validVc and adds an id.
 export const createRequestBody = ({issuer, vc = validVc}) => {
@@ -37,11 +35,8 @@ export function createISOTimeStamp(timeMs = Date.now()) {
   return new Date(timeMs).toISOString().replace(/\.\d+Z$/, 'Z');
 }
 
-export const createPresentationRequestBody = num => {
-  if(!num || VPs.length < num) {
-    throw new Error(`VP number must be between 1 and ${VPs.length}`);
-  }
-  const vp = klona(VPs[num - 1]);
+export const createPresentationRequestBody = name => {
+  const vp = klona(VPs[name]);
   return {
     verifiablePresentation: vp,
     options: {
