@@ -13,7 +13,14 @@ output. An example configuration is supplied below.
 module.exports = {
   issuer: {
     /**
-     * This is the id of the issuer instance, usually a DID.
+     * This is the label of the issuer instance that will be displayed in the
+     * playground.
+     * @example
+     * label: 'Veres Demo Issuer'
+     */
+    label: "",
+    /**
+     * This is the (optional) id of the issuer instance, usually a DID.
      * @example
      * id: 'did:key:z6MkrHKzgsahxBLyNAbLQyB1pcWNYC9GmywiWPgkrvntAZcj'
      */
@@ -30,7 +37,14 @@ module.exports = {
   },
   verifier: {
     /**
-     * This is the id of the verifier instance, usually a DID.
+     * This is the label of the verifier instance that will be displayed in the
+     * playground.
+     * @example
+     * label: 'Veres Demo Verifier'
+     */
+    label: ""
+    /**
+     * This is the (optional) id of the verifier instance, usually a DID.
      * @example
      * id: 'did:key:z6MkrHKzgsahxBLyNAbLQyB1pcWNYC9GmywiWPgkrvntAZcj'
      */
