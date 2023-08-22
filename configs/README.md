@@ -21,6 +21,7 @@ module.exports = {
     label: "",
     /**
      * This is the (optional) id of the issuer instance, usually a DID.
+
      * @example
      * id: 'did:key:z6MkrHKzgsahxBLyNAbLQyB1pcWNYC9GmywiWPgkrvntAZcj'
      */

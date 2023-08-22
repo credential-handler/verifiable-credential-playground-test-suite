@@ -27,7 +27,7 @@ following specifications:
 
 ### Install
 
-This project requires Node.js v16.
+This project requires Node.js >= v18.
 
 The required dependencies to run the test suite locally can be installed as
 follows

@@ -1,0 +1,51 @@
+name: chapi-playground-test-suite CI
+
+on:
+  push:
+    branches:
+      - '*'
+  schedule:
+    # Schedule to run every day at 2 PM UTC timezone (10AM EST)
+    - cron: "0 14 * * *"
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Dependencies
+      run: npm install
+    - name: Run eslint
+      run: npm run lint
+
+  test-db-config:
+    timeout-minutes: 10
+    needs: [lint]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Set and Create Configuration File
+        env:
+          DB_CONFIG: ${{ secrets.DB_CONFIG }}
+        run: |
+          echo "$DB_CONFIG" > ./configs/digitalbazaar.cjs
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Tests with Node.js ${{ matrix.node-version }}
+        run: npm test
+        continue-on-error: true

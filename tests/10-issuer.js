@@ -19,9 +19,7 @@ describe('Issue Credential - Data Integrity', function() {
       describe(`Issuer: ${name}`, function() {
         it('MUST successfully issue a credential.', async function() {
           const body = createRequestBody({issuer});
-          const {result, data: issuedVc, error} = await issuer.post({
-            json: body
-          });
+          const {result, data: issuedVc, error} = await issuer.post({json: body});
           shouldReturnResult({result, error});
           should.exist(issuedVc, 'Expected result to have data.');
           result.status.should.equal(201, 'Expected statusCode 201.');
@@ -33,6 +31,27 @@ describe('Issue Credential - Data Integrity', function() {
           delete body.credential;
           const {result, error} = await issuer.post({json: body});
           shouldThrowInvalidInput({result, error});
+        });
+        it('credential MUST have property "@context".', async function() {
+          const body = createRequestBody({issuer});
+          delete body.credential['@context'];
+          const {result, error} = await issuer.post({json: body});
+          shouldThrowInvalidInput({result, error});
+        });
+        it('credential "@context" MUST be an array.', async function() {
+          const body = createRequestBody({issuer});
+          body.credential['@context'] = 4;
+          const {result, error} = await issuer.post({json: body});
+          shouldThrowInvalidInput({result, error});
+        });
+        it('credential "@context" items MUST be strings.', async function() {
+          const body = createRequestBody({issuer});
+          const invalidContextTypes = [{foo: true}, 4, false, null];
+          for(const invalidContextType of invalidContextTypes) {
+            body.credential['@context'] = invalidContextType;
+            const {result, error} = await issuer.post({json: {...body}});
+            shouldThrowInvalidInput({result, error});
+          }
         });
         it('credential MUST have property "@context".', async function() {
           const body = createRequestBody({issuer});
