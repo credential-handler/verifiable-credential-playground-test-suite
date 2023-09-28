@@ -1,7 +1,7 @@
-# chapi-playground-test-suite
+# verifiable-credential-playground-test-suite
 
 Test Suite for implementers of the VC-API that would like to integrate into the
-CHAPI Playground.
+VC Playground.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ CHAPI Playground.
 ## Background
 
 This is a test suite for the VC-API that allows implementers looking to
-integrate with the CHAPI Playground to test their implementation independently
+integrate with the VC Playground to test their implementation independently
 before integration.
 
 For more information about Verifiable Credentials and the VC API, please see the
