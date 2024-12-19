@@ -1,7 +1,7 @@
 /*!
  * Copyright (c) 2022 Digital Bazaar, Inc. All rights reserved.
  */
-import chai from 'chai';
+import * as chai from 'chai';
 
 const should = chai.should();
 
