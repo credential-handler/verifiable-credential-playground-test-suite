@@ -32,8 +32,8 @@ This project requires Node.js >= v18.
 The required dependencies to run the test suite locally can be installed as
 follows
 
-```js
-npm i
+```sh
+$ npm i
 ```
 
 ### Configuration
@@ -50,8 +50,9 @@ on how to write config files for your issuers.
 
 Once your configs files are written, the test suite can be started with
 
-```
-npm test
+```sh
+$ npm test # command line output
+$ npm run test:html # HTML output to `report.html`
 ```
 
 ## Implementation

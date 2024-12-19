@@ -9,6 +9,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha tests/ --timeout 15000 --preserve-symlinks",
+    "test:html": "mocha tests/ --timeout 15000 --preserve-symlinks --reporter mocha-simple-html-reporter --reporter-options output=report.html",
     "lint": "eslint ."
   },
   "repository": {
@@ -48,6 +49,7 @@
   "devDependencies": {
     "eslint": "^8.19.0",
     "eslint-config-digitalbazaar": "^4.0.1",
-    "eslint-plugin-jsdoc": "^39.3.3"
+    "eslint-plugin-jsdoc": "^39.3.3",
+    "mocha-simple-html-reporter": "^2.0.0"
   }
 }
