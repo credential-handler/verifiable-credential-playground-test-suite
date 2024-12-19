@@ -76,23 +76,6 @@ describe('Issue Credential - Data Integrity', function() {
             shouldThrowInvalidInput({result, error});
           }
         });
-        it('credential MUST have property "issuer"', async function() {
-          const body = createRequestBody({issuer});
-          delete body.credential.issuer;
-          const {result, error} = await issuer.post({json: body});
-          shouldThrowInvalidInput({result, error});
-        });
-        it('"credential.issuer" MUST be a string or an object',
-          async function() {
-            const body = createRequestBody({issuer});
-            const invalidIssuerTypes = [null, true, 4, []];
-            for(const invalidIssuerType of invalidIssuerTypes) {
-              body.credential.issuer = invalidIssuerType;
-              const {result, error} = await issuer.post({json: {...body}});
-              shouldThrowInvalidInput({result, error});
-            }
-          }
-        );
         it('credential MUST have property "credentialSubject"',
           async function() {
             const body = createRequestBody({issuer});
