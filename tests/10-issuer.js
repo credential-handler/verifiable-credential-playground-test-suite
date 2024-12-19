@@ -1,13 +1,13 @@
 /*!
  * Copyright (c) 2022 Digital Bazaar, Inc. All rights reserved.
  */
+import * as chai from 'chai';
 import {createISOTimeStamp, createRequestBody} from './mock.data.js';
 import {
   shouldBeIssuedVc,
   shouldReturnResult,
   shouldThrowInvalidInput
 } from './assertions.js';
-import chai from 'chai';
 import configs from '../configs/index.cjs';
 import {Issuer} from '../lib/issuer.js';
 const should = chai.should();
